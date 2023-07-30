@@ -1,0 +1,34 @@
+1.create a app.py file and database.db file
+
+from flask import Flask, render_template,url_for
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin
+
+
+app=Flask(__name__)
+#connecting
+db=SQLAlchemy(app)
+app.config['SQLALXHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SECRET_KEY'] ='asq4df34bg6%^FqvSGFS&^fsdf'
+
+#creating a class for table in sqlite database 
+class User(db.Model,UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    username=db.Column(db.String(20),nullable=False,unique=True)
+    password=db.Column(db.String(80),nullable=False)
+run on terminal
+
+#crating a table
+>python
+>>from app import db
+>>db.create_all()
+>>exit()
+
+#checking table is there or not
+>sqlite database.db
+>>>.tables
+output: user
+>>>.exit
+
+2.create classes for login and register 
+3.using flask_forms to create a forms 
